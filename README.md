@@ -1,7 +1,7 @@
 Reddit Search Download
 ======================
 
-Small script to help download reddit search results in json and xml format.
+Small script to download reddit search results in json and xml format.
 
 The function ```reddit_search_download(title,format,subreddit,query,sort,t)``` takes in 6 arguments:
 
