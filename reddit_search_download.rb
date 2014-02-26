@@ -4,8 +4,8 @@ require 'net/http'
 require 'open-uri'
 require 'json'
 
-def reddit_search_download(title,format,subreddit,query,sort,t)
-  def listy(format, subreddit,query,sort,t)
+def reddit_search_download(title,file_format,subreddit,query,sort,t)
+  def listy(subreddit,query,sort,t)
     fullname_list = []
     current_fullname = ''
     count = 0
@@ -28,9 +28,9 @@ def reddit_search_download(title,format,subreddit,query,sort,t)
     return fullname_list
   end
 
-  fullname_list = listy(format,subreddit,query,sort,t)
+  fullname_list = listy(file_format,subreddit,query,sort,t)
 
-  if (format == "json")
+  if (file_format == "json")
     count = 0
     json_file = File.new("#{title}.json", "w")
     url = "http://www.reddit.com/r/#{subreddit}/search.json?q=#{query}&restrict_sr=on&sort=#{sort}&t=#{t}&limit=100"
@@ -56,7 +56,7 @@ def reddit_search_download(title,format,subreddit,query,sort,t)
     json_file << json_hash
     json_file.close
 
-  elsif (format == "xml")
+  elsif (file_format == "xml")
     xml_file = File.new("#{title}.xml", "w")
     xml_file << "<?xml version=\"1.0\"?>\n<posts>\n"
     count = 0
